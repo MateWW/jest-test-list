@@ -1,0 +1,63 @@
+{
+  "name": "jest-test-list",
+  "version": "0.0.3",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/api.d.ts",
+      "import": "./dist/api.js",
+      "require": "./dist/api.cjs"
+    },
+    "./api": {
+      "types": "./dist/api.d.ts",
+      "import": "./dist/api.js",
+      "require": "./dist/api.cjs"
+    },
+    "./cli": {
+      "types": "./dist/cli.d.ts",
+      "import": "./dist/cli.js",
+      "require": "./dist/cli.cjs"
+    },
+    "./reporter": {
+      "types": "./dist/reporter.d.ts",
+      "import": "./dist/reporter.js",
+      "require": "./dist/reporter.cjs"
+    },
+    "./runner": {
+      "types": "./dist/runner.d.ts",
+      "import": "./dist/runner.js",
+      "require": "./dist/runner.cjs"
+    }
+  },
+  "main": "./dist/api.cjs",
+  "module": "./dist/api.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rslib build",
+    "dev": "rslib build --watch"
+  },
+  "devDependencies": {
+    "@jest/test-result": "29.7.0",
+    "@jest/types": "29.6.3",
+    "@rsbuild/plugin-react": "1.1.0",
+    "@rslib/core": "0.1.3",
+    "@types/node": "22.8.1",
+    "@types/react": "18",
+    "jest-each": "29.7.0",
+    "jest-runtime": "29.7.0",
+    "typescript": "5.6.3"
+  },
+  "dependencies": {
+    "detect-package-manager": "3.0.2",
+    "ink": "5.1.0",
+    "meow": "^13.2.0",
+    "react": "18"
+  },
+  "peerDependencies": {
+    "jest-each": "*",
+    "jest-runtime": "*"
+  }
+}
