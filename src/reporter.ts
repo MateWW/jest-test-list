@@ -7,11 +7,12 @@ import type { ExtendedTestResult, TreeItem } from "./types";
  */
 export default function SimpleReporter(this: any, globalConfig: Config.GlobalConfig | AggregatedResult) {
   const results = new Map<string, TreeItem[]>();
-  this.onTestResult = (data: any, result: ExtendedTestResult) => {
+  this.onTestResult = (_data: any, result: ExtendedTestResult) => {
     results.set(result.testFilePath, result.output)
   };
 
-  this.onRunComplete = (contexts: any, testData: AggregatedResult) => {
-    console.log(JSON.stringify(Array.from(results.entries())))
+  this.onRunComplete = (_contexts: any, _testData: AggregatedResult) => {
+    const collator = Intl.Collator()
+    console.log(JSON.stringify(Array.from(results.entries()).sort(([a], [b]) => collator.compare(a,b))));
   }
 }

@@ -13,7 +13,6 @@ export interface TreeItemTest extends TreeItemBase {
 export interface TreeItemDescribe extends TreeItemBase {
   type: 'describe';
   describe: string;
-  error?: unknown;
   children: TreeItem[];
 }
 
@@ -24,6 +23,7 @@ interface TreeItemBase {
 
 export interface TreeError {
   type: 'error';
+  message: string;
   error: unknown;
 }
 

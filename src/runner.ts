@@ -43,8 +43,7 @@ export default async function jestGetTestsList(
       try {
         fn?.();
       } catch (e) {
-        context.error = e;
-        console.error(e);
+        context.children.push({ type: 'error', message: (e as Error)?.toString(), error: e });
       }
       context = parent;
   });
@@ -77,7 +76,7 @@ export default async function jestGetTestsList(
       runtime.requireModule(testPath);
     }
   } catch (e) {
-    output = [{ type: 'error', error: e }];
+    output = [{ type: 'error', message: (e as Error)?.toString(), error: e }];
   }
   const endTime = performance.now();
   

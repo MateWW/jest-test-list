@@ -22,10 +22,11 @@ interface ExtractTreeOptions {
   packageManager?: string;
   maxBuffer?: number;
   extras?: string;
+  cwd?: string;
 }
 
 export async function extractTree(options: ExtractTreeOptions = {}) {
-  const cwd = process.cwd()
+  const cwd = options.cwd ?? process.cwd()
   const reporterPath = require.resolve('./reporter.js');
   const runnerPath = require.resolve('./runner.js');
   const packageManager = options.packageManager ?? await detect({ cwd });
