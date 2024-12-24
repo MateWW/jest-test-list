@@ -2,6 +2,9 @@
   "name": "jest-test-list",
   "version": "0.0.3",
   "type": "module",
+  "bin": {
+    "jest-test-list": "./bin/jest-test-list.cjs"
+  },
   "exports": {
     ".": {
       "types": "./dist/api.d.ts",
@@ -38,9 +41,13 @@
   "scripts": {
     "build": "rslib build",
     "dev": "rslib build --watch",
-    "test": "bun test ./tests/*.test.ts"
+    "test": "bun test ./tests/*.test.ts",
+    "lint": "biome lint",
+    "format": "biome format",
+    "fix": "biome format --fix && biome lint --fix"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@jest/test-result": "29.7.0",
     "@jest/types": "29.6.3",
     "@rsbuild/plugin-react": "1.1.0",
@@ -54,6 +61,7 @@
   },
   "dependencies": {
     "detect-package-manager": "3.0.2",
+    "import-local": "^3.2.0",
     "ink": "5.1.0",
     "meow": "^13.2.0",
     "react": "18"
