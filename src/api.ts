@@ -33,7 +33,9 @@ interface ExtractTreeOptions {
 	cwd?: string;
 }
 
-export async function extractTree(options: ExtractTreeOptions = {}) {
+export async function extractTree(
+	options: ExtractTreeOptions = {},
+): Promise<TestsByFile[]> {
 	const cwd = options.cwd ?? process.cwd();
 	const localRequire = globalThis.require || createRequire(import.meta.url);
 	const reporterPath = localRequire.resolve("./reporter");
