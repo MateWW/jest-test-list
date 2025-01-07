@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from "react";
+import { useEffect, useMemo } from "react";
 import { Box, Newline, render, Text, Transform } from "ink";
 import { flags, jestFlags } from "./cli/args";
 import { Progress } from "./cli/components/progress";
@@ -8,6 +8,8 @@ import { List } from "./cli/components/list";
 import { extractTree } from "./api";
 import { useTestsList } from "./cli/hooks/useTestsList";
 import { JestError } from "./cli/components/jestError";
+import { saveToClipboard } from "./cli/clipboard";
+import { useFormattedLinesByFile } from "./cli/hooks/useFormattedLinesByFile";
 
 const results = extractTree({
 	packageManager:
@@ -19,6 +21,13 @@ const results = extractTree({
 
 const TestsResults = () => {
 	const state = useTestsList(results);
+	const formattedItems = useFormattedLinesByFile(state.data);
+
+	useEffect(() => {
+		if (formattedItems.length > 0 && flags.copyToClipboard) {
+			saveToClipboard(formattedItems);
+		}
+	}, [formattedItems]);
 
 	if (state.loading) {
 		return <Progress text="Working on your tests list" />;
@@ -28,7 +37,7 @@ const TestsResults = () => {
 		return <JestError error={state.error} />;
 	}
 
-	return <List items={state.data} />;
+	return <List formattedItems={formattedItems} />;
 };
 
 const App = () => {

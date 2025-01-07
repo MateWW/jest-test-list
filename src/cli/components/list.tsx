@@ -1,25 +1,12 @@
 import { Box } from "ink";
-import type { TestsByFile } from "../../types";
-import { useMemo } from "react";
-import { format } from "../format";
-import path from "node:path";
-import { flags } from "../args";
 import { Text } from "./Text";
+import type { FormattedLinesByFile } from "../hooks/useFormattedLinesByFile";
 
 interface ListProps {
-	items: TestsByFile[];
+	formattedItems: FormattedLinesByFile[];
 }
 
-export function List({ items }: ListProps) {
-	const formattedItems = useMemo(
-		() =>
-			items.map((file) => ({
-				fileName: path.relative(flags.workingDir, file.filePath),
-				tests: format(file.testsTree),
-			})),
-		[items],
-	);
-
+export function List({ formattedItems }: ListProps) {
 	return (
 		<>
 			{formattedItems.map((item) => (
@@ -33,7 +20,7 @@ export function List({ items }: ListProps) {
 						paddingBottom={1}
 						flexDirection="column"
 					>
-						{item.tests?.map(({ depth, parts }, itemIndex) => (
+						{item.lines?.map(({ depth, parts }, itemIndex) => (
 							<Box
 								key={`${item.fileName}_${itemIndex}`}
 								paddingLeft={depth * 2}

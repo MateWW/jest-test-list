@@ -3,7 +3,7 @@
 exports[`API tests should extract tree from example app 1`] = `
 [
   {
-    "filePath": "/Users/mateuszwit/Projects/opensource/jest-tests-list/examples/basic-jest-tests/tests/basic-its.test.ts",
+    "filePath": "../examples/basic-jest-tests/tests/basic-its.test.ts",
     "testsTree": [
       {
         "ancestors": [],
@@ -30399,7 +30399,7 @@ exports[`API tests should extract tree from example app 1`] = `
     ],
   },
   {
-    "filePath": "/Users/mateuszwit/Projects/opensource/jest-tests-list/examples/basic-jest-tests/tests/basic-tests.test.ts",
+    "filePath": "../examples/basic-jest-tests/tests/basic-tests.test.ts",
     "testsTree": [
       {
         "ancestors": [],
@@ -60795,7 +60795,7 @@ exports[`API tests should extract tree from example app 1`] = `
     ],
   },
   {
-    "filePath": "/Users/mateuszwit/Projects/opensource/jest-tests-list/examples/basic-jest-tests/tests/error-global.test.ts",
+    "filePath": "../examples/basic-jest-tests/tests/error-global.test.ts",
     "testsTree": [
       {
         "error": {},
@@ -60806,7 +60806,7 @@ exports[`API tests should extract tree from example app 1`] = `
     ],
   },
   {
-    "filePath": "/Users/mateuszwit/Projects/opensource/jest-tests-list/examples/basic-jest-tests/tests/error-local.test.ts",
+    "filePath": "../examples/basic-jest-tests/tests/error-local.test.ts",
     "testsTree": [
       {
         "ancestors": [],
@@ -61250,7 +61250,7 @@ exports[`API tests should extract tree from example app 1`] = `
     ],
   },
   {
-    "filePath": "/Users/mateuszwit/Projects/opensource/jest-tests-list/examples/basic-jest-tests/tests/globals-mock-functions.test.ts",
+    "filePath": "../examples/basic-jest-tests/tests/globals-mock-functions.test.ts",
     "testsTree": [
       {
         "ancestors": [],
@@ -62066,7 +62066,7 @@ exports[`API tests should extract tree from example app 1`] = `
     ],
   },
   {
-    "filePath": "/Users/mateuszwit/Projects/opensource/jest-tests-list/examples/basic-jest-tests/tests/globals-mock-modules.test.ts",
+    "filePath": "../examples/basic-jest-tests/tests/globals-mock-modules.test.ts",
     "testsTree": [
       {
         "ancestors": [],
@@ -62704,7 +62704,7 @@ exports[`API tests should extract tree from example app 1`] = `
     ],
   },
   {
-    "filePath": "/Users/mateuszwit/Projects/opensource/jest-tests-list/examples/basic-jest-tests/tests/globals-mock-timers.test.ts",
+    "filePath": "../examples/basic-jest-tests/tests/globals-mock-timers.test.ts",
     "testsTree": [
       {
         "ancestors": [],

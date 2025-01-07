@@ -1,8 +1,7 @@
-import type { TextProps } from "ink";
 import type { TreeItem } from "../types";
 import { flags } from "./args";
 
-interface FormattedLine {
+export interface FormattedLine {
 	depth: number;
 	parts: FormattedPart[];
 }

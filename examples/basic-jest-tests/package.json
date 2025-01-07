@@ -3,7 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "test": "jest --reporters /Users/mateuszwit/Projects/opensource/jest-tests-list/dist/reporter.cjs --testRunner /Users/mateuszwit/Projects/opensource/jest-tests-list/dist/runner.cjs"
+    "test": "node ../../bin/jest-test-list.cjs"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
