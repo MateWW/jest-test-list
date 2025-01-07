@@ -60,6 +60,7 @@
     "typescript": "5.6.3"
   },
   "dependencies": {
+    "clipboardy": "^4.0.0",
     "detect-package-manager": "3.0.2",
     "import-local": "^3.2.0",
     "ink": "5.1.0",

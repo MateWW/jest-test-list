@@ -1,81 +1,44 @@
-import React, {useState, useEffect} from 'react';
-import {render, Text} from 'ink';
+import { useState, useEffect, Suspense } from "react";
+import { Box, Newline, render, Text, Transform } from "ink";
+import { flags, jestFlags } from "./cli/args";
+import { Progress } from "./cli/components/progress";
+import { Logo } from "./cli/components/logo";
+import { Params } from "./cli/components/params";
+import { List } from "./cli/components/list";
+import { extractTree } from "./api";
+import { useTestsList } from "./cli/hooks/useTestsList";
+import { JestError } from "./cli/components/jestError";
 
-// import {extractTree} from './api'
-// import arg from 'arg'
-// import type { ExtendedTreeItem, TestsByFile } from './types';
+const results = extractTree({
+	packageManager:
+		flags.packageManager !== "auto" ? flags.packageManager : undefined,
+	cwd: flags.workingDir,
+	extras: jestFlags.join(" "),
+	maxBuffer: flags.maxBuffer,
+});
 
-// const args = arg({
-//   '--format': String,
-// }, {argv: process.argv});
+const TestsResults = () => {
+	const state = useTestsList(results);
 
-// const format = args['--format'] ?? 'inline';
+	if (state.loading) {
+		return <Progress text="Working on your tests list" />;
+	}
 
-// if(!['inline', 'tree'].includes(format)) {
-//   console.error(`Invalid format "${format}", must be one of "inline" or "tree"`);
-//   process.exit(1);
-// }
+	if (state.error) {
+		return <JestError error={state.error} />;
+	}
 
-// function printTree(result: TestsByFile[]) {
-//   function printChildren(children: ExtendedTreeItem[], indent: number = 0) {
-//     children.forEach((child) => {
-//       console.log(`${' '.repeat(indent * 2)}${child.describe}`);
-//       if('children' in child && child.children) {
-//         printChildren(child.children, indent + 1);
-//       }
-//     });
-//   }
-
-//   result.forEach((file) => {
-//     console.log(file.filePath);
-//     printChildren(file.testsTree);
-//   });
-// } 
-
-// function printInline(result: TestsByFile[]) {
-//   function printChildren(children: ExtendedTreeItem[], ancestors: string = '') {
-//     children.forEach((child) => {
-//       const title = `${ancestors} ${child.describe}`;
-//       if('children' in child && child.children) {
-//         printChildren(child.children, title);
-//       } else {
-//         console.log(title);
-//       }
-//     });
-//   }
-
-//   result.forEach((file) => {
-//     console.log(file.filePath);
-//     printChildren(file.testsTree);
-//   });
-// } 
-
-// function printResults(results: TestsByFile[]) {
-//   if(format === 'inline'){
-//     printInline(results);
-//   } else {
-//     printTree(results);
-//   }
-// }
-
-// extractTree().then((result) => {
-//   printResults(result);
-// }).finally(() => {process.exit(0)});
-
-const Counter = () => {
-	const [counter, setCounter] = useState(0);
-
-	useEffect(() => {
-		const timer = setInterval(() => {
-			setCounter(previousCounter => previousCounter + 1);
-		}, 100);
-
-		return () => {
-			clearInterval(timer);
-		};
-	}, []);
-
-	return <Text color="green">{counter} tests passed</Text>;
+	return <List items={state.data} />;
 };
 
-render(<Counter />);
+const App = () => {
+	return (
+		<Box flexDirection="column">
+			<Logo />
+			<Params />
+			<TestsResults />
+		</Box>
+	);
+};
+
+render(<App />);
