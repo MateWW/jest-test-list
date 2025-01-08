@@ -36,7 +36,8 @@
   "module": "./dist/api.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
   "scripts": {
     "build": "rslib build",
